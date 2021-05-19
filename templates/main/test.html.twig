@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+{% block title %} {{ parent()}} | Test {% endblock %}
+
+{% block body %}
+
+<h1>Test !!</h1>
+
+
+{# Creation de variable #}
+
+{% set name = 'Julie' %}
+
+<h2>{{ name }}</h2>
+
+{# Creation d'un tableau #}
+{% set myTable = ['yellow', 'blue', 'green', 'red', 'purple'] %}
+{% for color in myTable %}
+    {% if color!="red" %}
+        <div>Index : {{ loop.index }}</div>
+        <div style="background-color: {{ color }}">{{ color }}</div>
+    {% endif %}
+    {# Usage de loop #}
+    {% if loop.first %}
+        <div>premiere iteration</div>
+        <div>nombre d'éléments : {{ loop.length }}</div>
+    {% endif %}
+    {% if loop.last %}
+        <div>dernière iteration</div>
+    {% endif %}
+{% endfor %}
+
+{# Creation d'un objet #}
+
+{% set book = {
+    title : 'Mentats of Dune',
+    author : "Herbert and Andersen",
+    year : 2004
+    }
+%}
+
+<h2>{{ book.title }}</h2>
+
+{% for key, val in book %}
+    <div>{{ key }} : {{ val }}</div>
+{% endfor %}
+
+{# Les filtres #}
+
+<h2>Quelques filtres</h2>
+
+<div>{{ name|upper }} contient {{ name|length }} lettres</div>
+<div>Mon tableau a {{ myTable|length }} couleurs : {{ myTable|join('-') }}</div>
+<div>{{ "now"|date('d/m/Y') }}</div>
+
+
+    {# Protection ou affichage #}
+
+    {% set userTag = '<h1>Julie</h1>' %}
+
+    <h3>Nom de l'utilisateur : {{ userTag }}</h3>
+    <h3>Nom de l'utilisateur : {{ userTag | raw }}</h3>
+    <h3>Nom de l'utilisateur : {{ userTag | striptags}}</h3>
+
+    {# Affichage des variables du controlleur
+    <h3>Nom de l'utilisateur : {{ user }}</h3>
+    <div>
+        Infos de la série :
+        <p>{{ serie.title }}</p>
+        <p>{{ serie.year }}</p>
+    </div>
+#}
+
+
+{% endblock %}
+
+

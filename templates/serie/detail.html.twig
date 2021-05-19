@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ parent() }} | Detail {% endblock %}
+{% block extrastyles %}
+    <style>
+        body {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)),
+            url("{{ asset('img/backdrops/' ~ serie.backdrop) }}");
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+
+<h2>Detail</h2>
+
+    <div class="block">
+        <div>
+            <img src="{{ asset('img/posters/series/' ~ serie.poster) }}" alt="{{ serie.name }}">
+        </div>
+        <div>
+            <div> Name : {{ serie.name }} </div>
+            <div> Synopsis : {{ serie.overview }} </div>
+            <div> Popularity : {{ serie.popularity }}%</div>
+            <div> First air date : {{ serie.firstAirDate|date('d/m/Y') }} </div>
+            <div> Last air date : {{ serie.lastAirDate|date('d/m/Y') }} </div>
+        </div>
+    </div>
+
+{% endblock %}
+

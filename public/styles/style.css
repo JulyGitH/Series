@@ -1,0 +1,98 @@
+header {
+    color : teal;
+    font-weight: bold;
+}
+
+header h1 {
+    font-family: 'Indie Flower', cursive;
+    font-size: 4em;
+}
+
+body {
+    padding-bottom: 3rem;
+}
+
+footer p {
+    color: #f2f2f2;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 2em;
+    margin-left: 1em;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Add a black background color to the top navigation */
+.topnav {
+    background-color: teal;
+    overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    font-family: 'Barriecito', cursive;
+    font-size: 2rem;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: turquoise;
+    color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+    background-color: #04AA6D;
+    color: white;
+}
+
+.bodyTitles {
+    font-family: 'Indie Flower', cursive;
+}
+
+.seriesList {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: space-between;
+    padding: 1em;
+}
+
+.block {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    padding: 1em;
+}
+
+.footer{
+    background-color: teal;
+    position: fixed;
+    width: 100vw;
+    height: 3rem;
+    bottom: 0;
+}
+
+
+/*
+CSS rules to specify families
+
+font-family: 'Barriecito', cursive;
+
+font-family: 'Freckle Face', cursive;
+
+font-family: 'Fredoka One', cursive;
+
+font-family: 'Indie Flower', cursive;
+
+font-family: 'Mountains of Christmas', cursive;
+*/

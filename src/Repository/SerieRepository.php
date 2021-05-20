@@ -19,7 +19,7 @@ class SerieRepository extends ServiceEntityRepository
         parent::__construct($registry, Serie::class);
     }
 
-    public function findBestSeries(){
+    public function findBestSeries($page){
 
        /* //en DQL
         $entityManager = $this->getEntityManager();
@@ -35,15 +35,15 @@ class SerieRepository extends ServiceEntityRepository
         //Avec le query builder
         $queryBuilder = $this->createQueryBuilder('s');
 
-        $queryBuilder   -> andWhere('s.vote > 8')
-                        ->andWhere('s.popularity > 78')
-                        ->addOrderBy('s.popularity', 'DESC');
+        $queryBuilder ->addOrderBy('s.popularity', 'DESC');
 
         $query = $queryBuilder->getQuery();
 
-        //même fin :
+        //Creation de la pagination
+        $offset = ($page - 1) * 50;
+        $query->setFirstResult($offset)->setMaxResults(50);
 
-        $query->setMaxResults(50);
+        //même fin :
         $results = $query->getResult();
 
         return $results;

@@ -6,5 +6,15 @@
 
 <h2>Add a serie</h2>
 
+    {{ form_start(serieForm) }}
+
+    <div class="form">
+    {{ form_widget(serieForm) }}
+
+    <button> Add a new tv show </button>
+    </div>
+
+    {{ form_end(serieForm) }}
+
 {% endblock %}
 

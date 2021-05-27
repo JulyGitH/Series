@@ -24,7 +24,25 @@
             <div> Popularity : {{ serie.popularity }}%</div>
             <div> First air date : {{ serie.firstAirDate|date('d/m/Y') }} </div>
             <div> Last air date : {{ serie.lastAirDate|date('d/m/Y') }} </div>
+            <a href="{{ path('serie_edit',{'id' : serie.id}) }}">Edit this serie</a>
+            <a href="{{ path('serie_delete',{'id' : serie.id}) }}">Delete this serie</a>
         </div>
+        <section class="block">
+            <h3>Seasons</h3>
+            {% for season in serie.seasons %}
+                <article>
+                    <img src="{{ asset('img/posters/seasons/' ~season.poster) }}" alt="{{ serie.name }}">
+                    <div>
+                        <h4>Season #{{ season.number }}</h4>
+                        <div>{{ season.firstAirDate|date('Y-m-d') }}</div>
+                        {% if season.overview %}
+                            <div>{{ season.overview }}</div>
+                        {% endif %}
+                    </div>
+                </article>
+
+            {% endfor %}
+        </section>
     </div>
 
 {% endblock %}

@@ -3,6 +3,6 @@
 
 {% block body %}
 
-    <h1>Welcome in Series !</h1>
+    <h1>Welcome in Series {% if (app.user) %}{{ app.user.firstName }} {% endif %}!</h1>
 
 {% endblock %}

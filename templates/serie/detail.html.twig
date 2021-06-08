@@ -26,6 +26,12 @@
             <div> Last air date : {{ serie.lastAirDate|date('d/m/Y') }} </div>
             <a href="{{ path('serie_edit',{'id' : serie.id}) }}">Edit this serie</a>
             <a href="{{ path('serie_delete',{'id' : serie.id}) }}">Delete this serie</a>
+            <div><span id="nbLikes">{{ serie.nbLike }} likes</span></div>
+        </div>
+        <div>
+            <button class="likeCount" value="1">Like</button>
+            <button class="likeCount" value="0">Dislike</button>
+            <input type="hidden" id="serieId" value="{{ serie.id }}">
         </div>
         <section class="block">
             <h3>Seasons</h3>

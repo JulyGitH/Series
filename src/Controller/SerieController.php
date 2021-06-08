@@ -10,6 +10,7 @@ use App\Upload\SerieImage;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -45,7 +46,7 @@ class SerieController extends AbstractController
     }
 
     /**
-     * @Route("/series/detail/{id}", name="serie_detail")
+     * @Route("/series/detail/{id}", name="serie_detail", requirements={"id"="\d+"})
      */
     public function detail($id, SerieRepository $serieRepository): Response
     {
@@ -140,6 +141,37 @@ class SerieController extends AbstractController
         $this->addFlash('success', 'Serie has been deleted');
 
         return $this->redirectToRoute('serie_list');
+    }
+
+    /**
+     * @Route("/series/detail/ajax_like", name="serie_ajax_like")
+     */
+    public function likeOrDislike(Request $request,
+                                  SerieRepository $serieRepository,
+                                  EntityManagerInterface $entityManager): Response
+    {
+        //Recup des données en requete
+        $data= json_decode($request->getContent());
+        $serieId = $data->serieId;
+        $like = $data->like;
+
+        //On récupère l'instance de la série en fonction de l'id
+        $serie = $serieRepository->find($serieId);
+
+        //Modif des nbLike en fonction du paramètre
+        if($like == 0){
+            $serie->setNbLike($serie->getNbLike()-1);
+        } else {
+            $serie->setNbLike($serie->getNbLike()+1);
+        }
+
+        //validation en BDD de la modification de la serie
+        $entityManager->persist($serie);
+        $entityManager->flush();
+
+        //retourne un objet de type JsonResponse avec le total de likes mis à jour
+        return new JsonResponse(['likes'=>$serie->getNbLike()]);
+
     }
 
 
